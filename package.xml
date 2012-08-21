@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.6.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+http://pear.php.net/dtd/tasks-1.0.xsd
+http://pear.php.net/dtd/package-2.0
+http://pear.php.net/dtd/package-2.0.xsd">
+ <name>xattr</name>
+ <channel>pecl.php.net</channel>
+ <summary>Extended attributes.</summary>
+ <description>This package allows to manipulate extended attributes on filesystems that support them. Do not requires libattr from Linux XFS project now.
+ </description>
+ <lead>
+  <name>Marcin Gibula</name>
+  <user>mg</user>
+  <email>mg@iceni.pl</email>
+  <active>yes</active>
+ </lead>
+ <date>2012-08-21</date>
+ <time>10:02:58</time>
+ <version>
+  <release>1.1.1</release>
+  <api>1.1.0</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://www.php.net/license">PHP License</license>
+ <notes>Enforce open_basedir and safe_mode checks.
+ </notes>
+ <contents>
+  <dir name="/">
+   <dir name="tests">
+    <file name="001.phpt" role="test" />
+   </dir> <!-- //tests -->
+   <file name="config.m4" role="src" />
+   <file name="CREDITS" role="doc" />
+   <file name="php_xattr.h" role="src" />
+   <file name="isdk_xattr.h" role="src" />
+   <file name="xattr.c" role="src" />
+   <file name="isdk_xattr.c" role="src" />
+  </dir> <!-- / -->
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>4.0.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.0b1</min>
+   </pearinstaller>
+  </required>
+ </dependencies>
+ <providesextension>xattr</providesextension>
+ <extsrcrelease>
+  <configureoption default="autodetect" name="with-xattr" prompt="libattr library installation dir?" />
+ </extsrcrelease>
+ <changelog>
+  <release>
+   <version>
+    <release>1.1</release>
+    <api>1.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2012-08-21</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>remove libattr1-dev relied.</notes>
+  </release>
+   <version>
+    <release>1.0</release>
+    <api>1.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2004-08-19</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>New function added: xattr_supported.</notes>
+  </release>
+  <release>
+   <version>
+    <release>0.9</release>
+    <api>0.9</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2004-08-14</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>First public release. Requires libattr from Linux XFS project.</notes>
+  </release>
+ </changelog>
+</package>
