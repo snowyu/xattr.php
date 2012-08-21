@@ -194,7 +194,7 @@ PHP_FUNCTION(xattr_get)
 			RETURN_FALSE;
 		error = xattr_getxattr(path, attr_name, attr_value, buffer_size, 0, flags);
 		/* Return a string if everything is ok */
-		if (!error) {
+		if (error>=0) {
 			RETURN_STRINGL(attr_value, buffer_size, 0);
 		} 
 		
@@ -348,16 +348,6 @@ PHP_FUNCTION(xattr_list)
 			array_init(return_value);
 			p = buffer;
 			
-			/*
-			 * Root namespace has the prefix "trusted." and users namespace "user.". 
-			 */
-			if (flags & ATTR_ROOT) {
-				prefix = XATTR_ROOT_PREFIX;
-			} else {
-				prefix = XATTR_USER_PREFIX;
-			}
-			
-			prefix_len = strlen(prefix);
 			
 			/* 
 			 * We go through the whole list and add entries beginning with selected
@@ -365,9 +355,7 @@ PHP_FUNCTION(xattr_list)
 			 */
 			while (i != buffer_size) {
 				len = strlen(p) + 1;	/* +1 for NULL */
-				if (strstr(p, prefix) == p) {
-					add_next_index_stringl(return_value, p, len, 1);
-				}
+				add_next_index_stringl(return_value, p, len, 1);
 				
 				p += len;
 				i += len;
@@ -375,9 +363,7 @@ PHP_FUNCTION(xattr_list)
 		}
 		efree(buffer);
 	}
-	
-	/* Print warning on common errors */
-	if (errno) {
+	else if (errno) { /* Print warning on common errors */
 		switch (errno) {
 			case ENOTSUP:
 				php_error(E_WARNING, "%s Operation not supported", get_active_function_name(TSRMLS_C));
